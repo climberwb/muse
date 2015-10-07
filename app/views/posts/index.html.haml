@@ -1,1 +1,8 @@
-%h1 index
+%h1 All Posts
+
+-@posts.each do |post|
+    %h2=link_to post.title, post_path(post)
+    %p=link_to 'check it out',post.link
+    %p= post.description
+    
+=link_to 'add a new post',new_post_path
