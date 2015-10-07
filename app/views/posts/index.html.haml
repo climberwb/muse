@@ -2,6 +2,7 @@
 
 -@posts.each do |post|
     %h2=link_to post.title, post_path(post)
+    %h3= comment_count = pluralize(post.comments.count,"Count")
     = link_to image_tag(post.image.url(:small))
     %p=link_to 'check it out',post.link
     %p= post.description
