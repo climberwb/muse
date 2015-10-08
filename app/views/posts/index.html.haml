@@ -6,5 +6,6 @@
     = link_to image_tag(post.image.url(:small))
     %p=link_to 'check it out',post.link
     %p= post.description
-    
+    %p="upvote: #{post.get_upvotes.size}"
+    %p="downvote: #{post.get_downvotes.size}"
 =link_to 'add a new post',new_post_path

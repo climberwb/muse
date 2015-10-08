@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     
-    before_action :find_post, only: [:update,:edit,:destroy,:show]
+    before_action :find_post, only: [:update,:edit,:destroy,:show,:up_vote,:down_vote]
     before_action :authenticate_user!, except: [:index,:show]
      def index
          @posts = Post.all
@@ -36,6 +36,16 @@ class PostsController < ApplicationController
          else
              render 'edit'
          end
+     end
+     
+     def up_vote
+         @post.upvote_by current_user
+         redirect_to :back
+     end
+     
+     def down_vote
+         @post.downvote_by current_user
+         redirect_to :back
      end
      
      def show

@@ -3,16 +3,20 @@
 %p=@post.link
 %p=@post.description
 %p="author- #{@post.user.name}"
-
+="up votes #{@post.get_upvotes.size}"
+="down votes #{@post.get_downvotes.size}"
+=link_to 'vote up', like_post_path(@post), method: :get
+=link_to 'down vote', dislike_post_path(@post), method: :get
 #comment
     %h2= comment_count = pluralize(@post.comments.count,"Count")
-    
+   
     -@comments.each do |comment|
         .comment
             %p=comment.user.name
             %p.content=comment.content
             
     =render 'comments/form'
+
 =link_to 'edit', edit_post_path(@post)
 =link_to 'destroy', post_path(@post), method: :delete, data: {confirm: "Are you sure?"}
 =link_to 'home',root_path
